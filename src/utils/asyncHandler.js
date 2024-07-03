@@ -3,9 +3,11 @@
 //prototype->const asyncHandler=(fun)=>{()=>{}}
 
     // try catch wala
+    // higherorder function
 const asyncHandler=(fun)=>async(req,res,next)=>{
 
     try {
+        
         
     } catch (error) {
         res.status( err.code||500).json({
