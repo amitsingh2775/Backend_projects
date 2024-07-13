@@ -17,4 +17,11 @@ import cors from 'cors'
  app.use(express.urlencoded({extended:true,limit:"20kb"}))
 
  app.use(express.static("public"))
+
+ // importing route 
+ import userRoute from './routes/user.routes.js'
+
+ app.use("/api/v1/users",userRoute)
+
+ // look like->http://localhost:3000/user/*
  export {app}

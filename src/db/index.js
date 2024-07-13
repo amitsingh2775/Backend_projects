@@ -1,10 +1,10 @@
 // src/db/index.js
 import mongoose from 'mongoose';
- //import { DB_NAME } from '../constants.js';
+ import { DB_NAME } from '../constants.js';
 
 export const ConnectDB = async () => {
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/myapp').then(()=>{
+        await mongoose.connect(`${process.env.MONGO_URI}/${DB_NAME}`).then(()=>{
             console.log('MongoDB connected successfully');
         })
        

@@ -18,7 +18,8 @@ const upoloadOnCloudnariy=async(localPath)=>{
         resource_type:"auto"
     })
     // file uploaded succesfully
-    console.log("file uploaded",res.url);
+    //console.log("file uploaded",res.url);
+    fs.unlinkSync(localPath)
     return res;
     
    } catch (error) {
