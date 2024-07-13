@@ -231,9 +231,24 @@ const refreshAccesToken=asyncHandler(async(req,res)=>{
          )
     
     } catch (error) {
-        throw new ApiError(500,error?.message || "invaild ")
+        throw new ApiError(500,error?.message || "invaild refresh token ")
     }
     
+})
+
+const changePassword=asyncHandler(async(req,res)=>{
+    const {oldPassword,newPassword}=req.body;
+    const user=await User.findById(req.user?.id);
+    const isCorrectPassword=user.isPasswordCorrect(oldPassword)
+    if(!isCorrectPassword){
+        throw new ApiError(400,"incorrect old password")
+    }
+    user.password=newPassword
+    await user.save({validateBeforeSave:true})
+
+    return res
+    .status(200)
+    .json(new ApiResponse(200,{},"password change succesfully"))
 })
 
 export { userRegister,userLogin ,userLogout}
